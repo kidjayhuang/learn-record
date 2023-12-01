@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // CustomEvent 可以带参
+      const myEvent = new CustomEvent("myEvent", {
+        detail: {
+          name: "John",
+          age: 30,
+        },
+      });
+      
+      document.addEventListener("myEvent", function (e) {
+        console.log(e); //根据event.detail下面的参数进行读取数据
+      });
+
+      document.dispatchEvent(myEvent);
+
+
+      
+
+      // Event 不能带参
+      const myEvent1 = new Event("myEvent1");
+      
+      document.addEventListener("myEvent1", function (e) {
+        console.log(e); //根据event.detail下面的参数进行读取数据
+      });
+
+      document.dispatchEvent(myEvent1);
+
+
+    </script>
+  </body>
+</html>
