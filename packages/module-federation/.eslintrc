@@ -1,0 +1,18 @@
+{
+  "root": true, // 当前是根目录
+  /* 指定如何解析语法。*/
+  "parser": "vue-eslint-parser",
+  /* 优先级低于parse的语法解析配置 */
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    //模块化方案
+    "sourceType": "module",
+    "extraFileExtensions": [".vue"]
+  },
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+    // 解决 defineProps and defineEmits generate no-undef warnings
+  }
+}

@@ -1,13 +1,20 @@
 const { defineConfig } = require('@vue/cli-service');
 const webpack = require('webpack');
-
+const { ModuleFederationPlugin } = require('@module-federation/enhanced/webpack');
+console.log('-------------env------------', process.env.NODE_ENV);
+const isBuild = process.env.NODE_ENV === 'production'
+const port = 8082
 module.exports = defineConfig({
   pages: {
     index: {
       entry: './src/index.ts',
     },
   },
-  publicPath: 'auto',
+  devServer: {
+    host: "0.0.0.0",
+    port,
+  },
+  publicPath: '/',
   configureWebpack: {
     optimization: {
       splitChunks: {
@@ -34,7 +41,10 @@ module.exports = defineConfig({
         name: 'hello_exposes',
         filename: 'hello.js',
         exposes: {
-          './HelloWorld.vue': './src/components/HelloWorld.vue',
+          './HelloWorld.vue': './src/remote-modules/HelloWorld.vue',
+        },
+        remotes: {
+          hello_exposes: `hello_exposes@http://localhost:${port}/hello.js`,
         },
         shared: {
           vue: {
@@ -47,7 +57,10 @@ module.exports = defineConfig({
         name: 'about_exposes',
         filename: 'about.js',
         exposes: {
-          './AboutView.vue': './src/views/AboutView.vue',
+          './AboutView.vue': './src/remote-modules/AboutView.vue',
+        },
+        remotes: {
+          about_exposes: `about_exposes@http://localhost:${port}/about.js`,
         },
         shared: {
           vue: {
