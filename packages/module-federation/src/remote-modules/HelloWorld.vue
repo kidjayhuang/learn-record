@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    remoteremoteremoteremote
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -35,6 +36,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+console.log(111);
 
 export default defineComponent({
   name: 'HelloWorld',

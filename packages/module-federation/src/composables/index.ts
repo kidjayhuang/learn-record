@@ -1,2 +1,2 @@
-export * from "./useRemoteModules";
 export * from "./types";
+export * from "./useRemoteModule";
